@@ -15,6 +15,10 @@ public class FrontUserController {
     @Autowired
     private UserService userService;
 
+    /**
+     *  默认的跳转路径
+     * @return
+     */
     @RequestMapping
     public String index() {
         return "front/system/user_index";
