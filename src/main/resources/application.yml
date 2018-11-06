@@ -1,6 +1,5 @@
 server:
   port: 8005
-  jsp-servlet:
   init-parameters:
     development: true
 
