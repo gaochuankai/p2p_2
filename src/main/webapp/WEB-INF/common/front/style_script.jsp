@@ -8,13 +8,19 @@
 <script type="text/javascript" src="${dynamicURL}/js/js.cookie.js"></script>
 
 <!-- layui -->
-<script src="${dynamicURL}/js/layer-v3.1.1/layer/layer.js" type="text/javascript"></script>
+<script type="text/javascript" src="${dynamicURL}/js/layer-v3.1.1/layer/layer.js"></script>
 
-<link href="${dynamicURL}/css/common.css" rel="stylesheet" type="text/css"/>
-<link href="${dynamicURL}/css/login.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="${dynamicURL}/frontresources/js/Action.js"></script>
+<script type="text/javascript" src="${dynamicURL}/frontresources/js/waste.js"></script>
+<script type="text/javascript" src="${dynamicURL}/frontresources/js/banner.js"></script>
+<script type="text/javascript" src="${dynamicURL}/frontresources/js/jQuery-jcMarquee.js"></script>
+
+
+<link href="${dynamicURL}/frontresources/css/css.css" rel="stylesheet">
 
 <!-- meta -->
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width" />
+
 

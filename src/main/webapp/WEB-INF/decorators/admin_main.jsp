@@ -5,7 +5,7 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
     <head>
-        <title>意坚商城</title>
+        <title>十七金融</title>
         <%--<%@ include file="../common/later/meta.jsp" %>--%>
         <%--<%@ include file="../common/later/style_script.jsp"%>--%>
     </head>
