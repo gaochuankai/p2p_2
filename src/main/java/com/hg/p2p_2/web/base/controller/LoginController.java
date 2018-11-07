@@ -8,6 +8,7 @@ import com.hg.p2p_2.biz.system.service.LoginLogService;
 import com.hg.p2p_2.biz.system.service.UserService;
 import com.hg.p2p_2.biz.system.util.UserUtils;
 import com.hg.p2p_2.web.base.verify.MD5Util;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Date;
@@ -149,6 +151,32 @@ public class LoginController {
             result.put(BaseUtils.SYSTEM_MAP_SUCCESS, true);
         }
 
+        return result;
+    }
+    /**
+     * 登出方法
+     */
+    @RequestMapping(value="logout")
+    @ResponseBody
+    public Map<String, Object> logout(
+            HttpServletRequest request, HttpServletResponse response,
+            HttpSession session) {
+        Map<String, Object> result = new ConcurrentHashMap<>();
+        result.put(BaseUtils.SYSTEM_MAP_SUCCESS, false);
+        
+        Object object = session.getAttribute("loginUser");
+        if (object instanceof UserEntity) {
+            UserEntity loginUser = (UserEntity) object;
+         // 清空session
+            session.setAttribute("loginUser", null);
+            session.removeAttribute("loginUser");
+            result.put(BaseUtils.SYSTEM_MAP_SUCCESS, true);
+        } 
+        /*else {
+            AdminuserEntity loginUser = (AdminuserEntity) object;
+        }*/
+        
+        
         return result;
     }
 

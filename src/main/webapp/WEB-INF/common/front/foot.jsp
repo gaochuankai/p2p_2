@@ -287,7 +287,7 @@
                     success: function (data) {
                         //服务器端返回处理逻辑
                         if (data.success) {
-                            window.location.href = "${dynamicURL }/login?message="+tologin;
+                            window.location.href = "${dynamicURL }/login";
                         } else {
                             layer.confirm("注册失败！", {
                                 btn: ['取消', '重新注册'],

@@ -102,6 +102,9 @@ public class RegisterController {
         registerUser = userService.save(registerUser);
 
         if (registerUser != null && registerUser.getId() != null) {
+        	//注册成功后，将对象保存在sesssion中
+        	session.setAttribute("loginUser", registerUser);
+        	
             result.put(BaseUtils.SYSTEM_MAP_SUCCESS, true);
         } else {
             result.put(BaseUtils.SYSTEM_MAP_ERROR_MSG, "业务繁忙，请稍后尝试！");

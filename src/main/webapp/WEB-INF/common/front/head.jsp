@@ -12,10 +12,21 @@
         <a href="#" target="_blank" class="ico weibo"></a>
         <a href="#" target="_blank" class="ico weixin"></a>
         <a href="#" target="_blank" class="ico qq"></a>
-        <span class="fr"><a href="javascript:;" class="loginbtn">登录</a>
-            <a href="javascript:;" class="o regbtn">免费注册</a>
-            <a href="about.html">帮助中心</a>
-        </span>
+        
+        <c:if test="${sessionScope.loginUser!=null }">		
+        	<span class="fr"><span style="font-size: 15px">欢迎:</span><font color="red">${loginUser.username}</font>
+	           			<span style="font-size: 15px">登录</span>
+	           			&nbsp;
+	           			<a href="#" onclick="loginout();">退&nbsp;出</a>&nbsp;
+	            <a href="about.html">帮助中心</a>
+        	</span>
+        </c:if>
+        <c:if test="${sessionScope.loginUser==null }">
+	        <span class="fr"><a href="javascript:;" class="loginbtn">登录</a>
+	            <a href="javascript:;" class="o regbtn">免费注册</a>
+	            <a href="about.html">帮助中心</a>
+	        </span>
+	       </c:if>
     </div>
 </div>
 <div class="head">
@@ -30,3 +41,15 @@
         </ul>
     </div>
 </div>
+<script type="text/javascript">
+
+    function loginout(){
+        layer.confirm("确定要退出系统吗？", {btn: ['确定', '取消'], title: ""}, function(){
+            var url = "${dynamicURL }/login/logout";
+            $.post(url,function () {
+                window.location.href = "${dynamicURL }/login";
+            });
+        });
+    }
+
+</script>
