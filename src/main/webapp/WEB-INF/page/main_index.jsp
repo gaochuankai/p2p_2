@@ -17,13 +17,13 @@
                     <span class="hide-clip">下一个</span>
                 </a>
             </div>
-            <div class="event-item" style="background-color:#c20000; background-image:url(${dynamicURL}/upload/img4.jpg);">
+            <div class="event-item" style="background-color:#c20000; background-image:url(${dynamicURL}/folder/upload/img4.jpg);">
                 <a href="index.html" title="十七金融"></a>
             </div>
-            <div class="event-item" style="background-color:#c20000; background-image:url(${dynamicURL}/upload/img3.jpg);">
+            <div class="event-item" style="background-color:#c20000; background-image:url(${dynamicURL}/folder/upload/img4.jpg);">
                 <a href="index.html" title="十七金融"></a>
             </div>
-            <div class="event-item" style="background-color:#c20000; background-image:url(${dynamicURL}/upload/img4.jpg);">
+            <div class="event-item" style="background-color:#c20000; background-image:url(${dynamicURL}/folder/upload/img4.jpg);">
                 <a href="index.html" title="十七金融"></a>
             </div>
             <div class="switch-tab"></div>
@@ -239,11 +239,11 @@
             <div class="hd mt10 clearfix"><a href="reports.html" class="more">更多&gt;&gt;</a>媒体报道</div>
             <div class="reports mt10 clearfix">
                 <dl class="clearfix">
-                    <dt class="img"><a href="reportshow.html"><img src="upload/img5.jpg"></a></dt>
+                    <dt class="img"><a href="reportshow.html"><img src="${dynamicURL}/folder/upload/img5.jpg"></a></dt>
                     <dd><a href="newshow.html">互联网金融应该充当毛细血管的角色-上海法治声音</a></dd>
                 </dl>
                 <dl class="clearfix">
-                    <dt class="img"><a href="reportshow.html"><img src="upload/img6.jpg"></a></dt>
+                    <dt class="img"><a href="reportshow.html"><img src="${dynamicURL}/folder/upload/img6.jpg"></a></dt>
                     <dd><a href="newshow.html">互联网金融应该充当毛细血管的角色-上海法治声音</a></dd>
                 </dl>
             </div>
@@ -251,7 +251,7 @@
         </div>
 
         <!--ad-->
-        <div class="ad img mt10"><a href="#" class="btn-reg"><img src="upload/img7.jpg"></a></div>
+        <div class="ad img mt10"><a href="#" class="btn-reg"><img src="${dynamicURL}/folder/upload/img7.jpg"></a></div>
 
         <!--about-->
         <div class="mt10 bd bdr">

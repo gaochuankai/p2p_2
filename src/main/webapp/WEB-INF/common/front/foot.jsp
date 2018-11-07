@@ -286,10 +286,8 @@
                     async: false,                    //同步返回
                     success: function (data) {
                         //服务器端返回处理逻辑
-                        alert(data);
-                        
                         if (data.success) {
-                            window.location.href = "${dynamicURL }/front/main";
+                            window.location.href = "${dynamicURL }/login?message="+tologin;
                         } else {
                             layer.confirm("注册失败！", {
                                 btn: ['取消', '重新注册'],
