@@ -29,11 +29,13 @@
             <if test="email != null and email != ''">
                 AND email LIKE CONCAT('%',#{email},'%')
             </if>
-            <if test="enable != mull and enable != ''">
+            <if test="enable != null and enable != ''">
                 AND enable = #{enable}
             </if>
         </where>
-        LIMIT #{limitStart},#{limitEnd}
+        <if test="limitStart != null and limitStart != '' and limitEnd != mull and limitEnd != ''">
+            LIMIT #{limitStart},#{limitEnd}
+        </if>
     </select>
 
 </mapper>

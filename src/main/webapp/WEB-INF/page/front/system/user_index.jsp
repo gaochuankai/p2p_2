@@ -37,6 +37,7 @@
         </div>
         <div class="col-sm">
             <button type="button" onclick="loadUserData(1);">查询</button>
+            <button type="button" onclick="export2()">导出</button>
         </div>
     </div>
     <!-- <div class="row">
@@ -79,6 +80,15 @@
         // 加载分页
         loadPage();
     });
+
+    function export2(){
+        var username = $('#usernameFromId').val();
+        var email = $('#emailFromId').val();
+        var telephone = $('#telephoneFromId').val();
+        var url = "${dynamicURL}/front/user/export";
+        url += "?username=" + username + "&email=" + email + "&telephone=" + telephone;
+        window.location.href = url;
+    }
 
     function loadUserData(page){
         $.ajax({
