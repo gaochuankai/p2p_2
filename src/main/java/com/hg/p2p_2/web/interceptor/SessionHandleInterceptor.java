@@ -1,5 +1,6 @@
 package com.hg.p2p_2.web.interceptor;
 
+import com.hg.p2p_2.biz.base.util.BaseUtils;
 import com.hg.p2p_2.biz.system.entity.UserEntity;
 import org.springframework.lang.Nullable;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -15,7 +16,7 @@ public class SessionHandleInterceptor implements HandlerInterceptor {
             HttpServletResponse response,
             Object handler) throws Exception {
         String path = request.getServletPath();
-        Object loginUser = request.getSession().getAttribute("loginUser");
+        Object loginUser = request.getSession().getAttribute(BaseUtils.KEY_USER);
         if (path.indexOf("/front") >= 0) {
             if (!(loginUser instanceof UserEntity) || loginUser == null) {
                 // 如果没有登录，重定向到login页面

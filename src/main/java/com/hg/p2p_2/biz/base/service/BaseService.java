@@ -81,7 +81,7 @@ public abstract class BaseService<T, DAO extends BaseDao<T>> {
      * 批量保存并且返回Map
      *
      * @param list
-     * @return Map<String                                                               ,                                                                                                                               Object>
+     * @return Map<String                                                                                                                               ,                                                                                                                                                                                                                                                               Object>
      */
     @BusinessLog(operation = "保存")
     public Map<String, Object> saveMap(List<T> list) {
@@ -251,15 +251,13 @@ public abstract class BaseService<T, DAO extends BaseDao<T>> {
     }
 
     /**
-     * 根据条件做count统计
+     * count统计
      *
-     * @param searchParams
      * @return
      */
     @DataPermission
-    public long count(Map<String, Object> searchParams) {
-        //TODO:
-        return 0l;
+    public long count() {
+        return dao.count();
 //        Map<String, SearchFilter> filters = SearchFilter.parse(searchParams);
 //        Specification<T> spec = DynamicSpecifications.bySearchFilter(
 //                filters.values(), clazz);

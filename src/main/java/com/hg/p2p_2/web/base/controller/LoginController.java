@@ -67,9 +67,8 @@ public class LoginController {
         }
 
         Map<String, Object> searchParams = new ConcurrentHashMap<>();
-        searchParams.put("EQ_telephone", telephone);
-       UserEntity userEntity = userService.findOneByTelphone(searchParams);
-       System.out.println(userEntity);
+        searchParams.put("telephone", telephone);
+        UserEntity userEntity = userService.findOneByTelphone(searchParams);
         if (userEntity == null) {
             result.put(BaseUtils.SYSTEM_MAP_ERROR_MSG, "手机号错误，请重新输入！");
             return result;

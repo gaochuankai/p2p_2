@@ -13,4 +13,27 @@
         </where>
     </select>
 
+    <select id="findList" parameterType="map"
+            resultType="com.hg.p2p_2.biz.system.entity.UserEntity">
+        SELECT * FROM tr_system_user
+        <where>
+            <if test="telephone != null and telephone != ''">
+                AND telephone = LIKE CONCAT('%',#{telephone},'%')
+            </if>
+            <if test="createtime != null">
+                AND createtime = #{createtime},
+            </if>
+            <if test="username != null and username != ''">
+                AND username = LIKE CONCAT('%',#{username},'%')
+            </if>
+            <if test="email != null and email != ''">
+                AND email = LIKE CONCAT('%',#{email},'%')
+            </if>
+            <if test="enable != mull and enable != ''">
+                AND enable = #{enable}
+            </if>
+        </where>
+        LIMIT #{limitStart},#{limitEnd}
+    </select>
+
 </mapper>
