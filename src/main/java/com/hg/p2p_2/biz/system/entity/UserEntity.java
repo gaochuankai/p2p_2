@@ -5,6 +5,9 @@ import com.hg.p2p_2.biz.base.entity.BaseEntity;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+/**
+ * user实体类
+ */
 @Entity
 @Table(name = "tr_system_user")
 public class UserEntity extends BaseEntity<Long> {
@@ -33,6 +36,11 @@ public class UserEntity extends BaseEntity<Long> {
      * 手机号
      */
     private String telephone;
+
+    /**
+     * 账户状态可不可用
+     */
+    private Integer enable;
 
     public String getUsername() {
         return username;
@@ -72,5 +80,13 @@ public class UserEntity extends BaseEntity<Long> {
 
     public void setTelephone(String telephone) {
         this.telephone = telephone;
+    }
+
+    public Integer getEnable() {
+        return enable;
+    }
+
+    public void setEnable(Integer enable) {
+        this.enable = enable;
     }
 }

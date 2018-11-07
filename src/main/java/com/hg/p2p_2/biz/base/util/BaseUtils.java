@@ -49,4 +49,24 @@ public class BaseUtils {
      */
     public static final Integer PAGE_SIZE = 20;
 
+    /**
+     * pc-图片验证码
+     */
+    public static final String KEY_PICTURE_CHECKCODE = "_picture_checkCode";
+
+    /**
+     *
+     */
+    public static final String KEY_USER = "_loginuser";
+
+    /**
+     *
+     */
+    public static final String KEY_USER_ID = "_loginuser_id";
+
+    /**
+     *
+     */
+    public static final String KEY_LOGIN_NAME = "_loginuser_name";
+
 }
