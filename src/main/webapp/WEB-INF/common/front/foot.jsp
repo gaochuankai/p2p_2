@@ -99,10 +99,13 @@
             <div class="txt"><h1>为您提供简单、安全、高收益的理财服务</h1>优先选择有担保的优质债权 足值抵押物可以降低风险 分散投资，更能降低风险</div>
             <div class="form">
                 <form id="form11" method="post" novalidate="novalidate">
-                    <label><span>手机号</span><input type="text" class="form-control first" value="" name="telphone"
+                    <label><span>手机号</span>
+                    <input type="text" class="form-control first" value="" name="telphone"
                                                   id="telphone"></label>
-                    <label><span>密码</span><input type="password" class="form-control last" value="" name="password"
-                                                 id="password"></label>
+                    <label>
+                    	<span>密码</span>
+                    	<input type="password" class="form-control last" value="" name="password" id="password">
+                    </label>
                     <button type="button" value="" class="button login" id="login">登录</button>
                     <div class="mt15"><a href="javascript:;" id="btnreg">没有帐号？</a>&nbsp;|&nbsp;<a href="#">忘记密码？</a>
                     </div>
@@ -116,13 +119,17 @@
                 优先选择有担保的优质债权 足值抵押物可以降低风险 分散投资，更能降低风险
             </div>
             <div class="form">
-                <label><span>用户名</span><input type="text" class="form-control first" value="" name="name"></label>
-                <label><span>手机</span><input type="text" class="form-control" value="" name="name"></label>
-                <label><span>密码</span><input type="password" class="form-control" value="" name="name"></label>
-                <label><span>确认密码</span><input type="password" class="form-control last" value="" name="name"></label>
-                <button type="button" value="" class="button login" id="reg"
-                        onclick="window.location.href='member.html'">注册
-                </button>
+            	<form id="form22" method="post" novalidate="novalidate">
+	                <label><span>用户名</span><input type="text" class="form-control first" value="" name="username" id="username0"></label>
+	                <label><span>手机</span><input type="text" class="form-control" value="" name="telephone0" id="telephone0"></label>
+	                <label><span>密码</span><input type="password" class="form-control" value="" name="password" id="password0"></label>
+	                <label><span>确认密码</span><input type="password" class="form-control" value="" name="repassword" id="repassword0"></label>
+	                <!-- <button type="button" value="" class="button login" id="reg"
+	                        onclick="window.location.href='member.html'">注册
+	                </button> -->
+	                <label><input type="text" class="form-control last" value="" name="valider" id="valider" readonly="readonly"></label>
+	                 <button type="button" value="" class="button login" id="reg">注册</button>
+	             </form>
                 <div class="mt15"><a href="javascript:;" id="btnlogin">直接登录</a>&nbsp;|&nbsp;<a href="#">忘记密码？</a></div>
             </div>
         </div>
@@ -130,6 +137,7 @@
 </div>
 
 <script>
+	//定义手机号是否被注册变量
     var telFlag = false;
 
     $(function () {
@@ -174,7 +182,37 @@
                 }
             });
         });
+		/**
+		         注册手机验证
+		*/
+		$("#telephone0").keyup(function () {
+            var value = $("#telephone0").val();
+            //验证手机号格式的js正则表达式
+            var myreg = /^[1][3,4,5,7,8][0-9]{9}$/;
+            if (myreg.test(value)) {
+                $.ajax({
+                    url: "${dynamicURL }/login/checkTel?telphone=" + value,//请求路径
+                    type: "POST",//请求类型
+                    dataType: "JSON",//服务器响应数据类型
+                    //data: {"logingName": name},//参数
+                    success: function (data) {
+                    	console.log(data);
+                        if (!data.success) {
+                            telFlag = true;
+                            $("#telphoneFromSpanId").html("");
+                        } else {
+                            telFlag = false;
+                            $("#telphoneFromSpanId").html(data.errorMsg);
+                        }
+                    },//请求成功后回调
+                    error: function (data) {
 
+                    }//请求失败后回调
+                });
+            } else {
+                $("#telphoneFromSpanId").html("格式不正确");
+            }
+        });
         /**
          * 手机号验证
          */
@@ -189,6 +227,7 @@
                     dataType: "JSON",//服务器响应数据类型
                     //data: {"logingName": name},//参数
                     success: function (data) {
+                    	
                         if (data.success) {
                             telFlag = true;
                             $("#telphoneFromSpanId").html("");
@@ -205,7 +244,78 @@
                 $("#telphoneFromSpanId").html("格式不正确");
             }
         });
-
+        //点击注册
+        $('#reg').click(function () {
+            if (telFlag) {
+            	var username0=$("#username0").val();
+        		var telephone0=$("#telephone0").val();
+        		var password0=$("#password0").val();
+        		var repassword0=$("#repassword0").val();
+        		if (username0==null) {
+        			$("#valider").val("用户名不能为空！");
+        			return false;
+        		}
+        		if (telephone0==null) {
+        			$("#valider").val("用户名不能为空！");
+        			return false;
+        		}
+        		if (password0==null) {
+        			$("#valider").val("用户名不能为空！");
+        			return false;
+        		}
+        		if (repassword0==null) {
+        			$("#valider").val("用户名不能为空！");
+        			return false;
+        		}
+        		if (repassword0!=password0) {
+        			$("#valider").val("两次输入的密码不一致！");
+        			return false;
+        		}
+        		
+                var options = {
+                    type: 'post',                     //post提交
+                    url: '${dynamicURL}/register/register',     //url
+                    dataType: "json",                //json格式
+                    data: {
+                        "username": username0,
+                        "telephone": telephone0,
+                        "password": password0
+                    },        //如果需要提交附加参数，视情况添加
+                    clearForm: true,                //成功提交后，清除所有表单元素的值
+                    resetForm: true,                //成功提交后，重置所有表单元素的值
+                    cache: false,
+                    async: false,                    //同步返回
+                    success: function (data) {
+                        //服务器端返回处理逻辑
+                        alert(data);
+                        
+                        if (data.success) {
+                            window.location.href = "${dynamicURL }/front/main";
+                        } else {
+                            layer.confirm("注册失败！", {
+                                btn: ['取消', '重新注册'],
+                                title: ""
+                            }, function (index, layero) {
+                                window.location.href = "${dynamicURL }/login";
+                            }, function (index) {
+                                window.location.href = "${dynamicURL }/reg";
+                            });
+                        }
+                    },
+                    error: function (XmlHttpRequest, textStatus, errorThrown) {
+                        alert(errorThrown);
+                    }
+                };
+                $("#form22").ajaxSubmit(options);
+            } else {
+                if (!telFlag) {
+                    layer.msg('电话格式不正确！');
+                    return false;
+                }
+                return false;
+            }
+        });
+		//点击登录
         $('#login').click(function () {
             if (telFlag) {
                 var telphone = $("#telphone").val();

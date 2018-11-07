@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
+import java.util.Date;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -46,24 +48,33 @@ public class RegisterController {
     public Map<String, Object> registerByTel(HttpServletRequest request, HttpSession session) {
         Map<String, Object> result = new ConcurrentHashMap<>();
         result.put(BaseUtils.SYSTEM_MAP_SUCCESS, false);
-
-        String telphone = request.getParameter("telphone");// 可能是登录名，也可能是email
-        String code = request.getParameter("code");
+        //获取用户信息
+        String username=request.getParameter("username");
+        String telphone=request.getParameter("telephone");
+        String password0=request.getParameter("password");
 
         if (StringUtils.isBlank(telphone)) {
             result.put(BaseUtils.SYSTEM_MAP_ERROR_MSG, "电话不能为空！");
             return result;
         }
-        if (StringUtils.isBlank(code)) {
-            result.put(BaseUtils.SYSTEM_MAP_ERROR_MSG, "验证码不能为空！");
+        if (StringUtils.isBlank(username)) {
+            result.put(BaseUtils.SYSTEM_MAP_ERROR_MSG, "用户名不能为空！");
             return result;
         }
+        if (StringUtils.isBlank(password0)) {
+            result.put(BaseUtils.SYSTEM_MAP_ERROR_MSG, "用户密码不能为空！");
+            return result;
+        }
+//        if (StringUtils.isBlank(code)) {
+//            result.put(BaseUtils.SYSTEM_MAP_ERROR_MSG, "验证码不能为空！");
+//            return result;
+//        }
 
-        String testcode = (String) session.getAttribute("verCode");
-        if (StringUtils.equalsIgnoreCase(testcode, code)) {
-            result.put(BaseUtils.SYSTEM_MAP_ERROR_MSG, "验证码不正确！");
-            return result;
-        }
+//        String testcode = (String) session.getAttribute("verCode");
+//        if (StringUtils.equalsIgnoreCase(testcode, code)) {
+//            result.put(BaseUtils.SYSTEM_MAP_ERROR_MSG, "验证码不正确！");
+//            return result;
+//        }
 
         Map<String, Object> searchParameters = new ConcurrentHashMap<>();
         searchParameters.put("telephone", telphone);
@@ -74,10 +85,13 @@ public class RegisterController {
             result.put(BaseUtils.SYSTEM_MAP_ERROR_MSG, "该电话已存在！");
             return result;
         }
+       
 
         registerUser = new UserEntity();
-        registerUser.setUsername("");// 默认为空
-        registerUser.setPassword(MD5Util.md5("123456789"));//初始密码赋值123456789
+        registerUser.setUuid("l231313131");
+        registerUser.setCreatetime(new Date());
+        registerUser.setUsername(username);// 默认为空
+        registerUser.setPassword(MD5Util.md5(password0));//初始密码赋值123456789
         registerUser.setEmail("");// 邮箱设置为空
         registerUser.setAge(0);//默认为空
         registerUser.setEnable(0);//设置为可用
