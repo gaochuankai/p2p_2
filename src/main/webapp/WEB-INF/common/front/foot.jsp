@@ -227,7 +227,6 @@
                     dataType: "JSON",//服务器响应数据类型
                     //data: {"logingName": name},//参数
                     success: function (data) {
-                    	
                         if (data.success) {
                             telFlag = true;
                             $("#telphoneFromSpanId").html("");
