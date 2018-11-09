@@ -9,6 +9,9 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * 拦截器
+ */
 public class SessionHandleInterceptor implements HandlerInterceptor {
 
     public boolean preHandle(
@@ -17,7 +20,7 @@ public class SessionHandleInterceptor implements HandlerInterceptor {
             Object handler) throws Exception {
         String path = request.getServletPath();
         Object loginUser = request.getSession().getAttribute(BaseUtils.KEY_USER);
-        if (path.indexOf("/front") >= 0) {
+        if (path.indexOf("/front") >= 0 || path.indexOf("/admin") >= 0) {
             if (!(loginUser instanceof UserEntity) || loginUser == null) {
                 // 如果没有登录，重定向到login页面
                 response.sendRedirect("/login");

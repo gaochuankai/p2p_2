@@ -157,6 +157,6 @@
                 loadUserData(page);
             }
         });
-}
+    }
 
 </script>

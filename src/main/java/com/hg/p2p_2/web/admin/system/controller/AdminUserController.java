@@ -16,6 +16,6 @@ public class AdminUserController extends BaseController<UserEntity, UserService>
 
     @Override
     public String index(Model model) {
-        return "";
+        return "admin/system/user_index";
     }
 }

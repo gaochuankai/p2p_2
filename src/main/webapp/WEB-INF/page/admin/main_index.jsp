@@ -4,729 +4,375 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="dynamicURL" value="${pageContext.request.contextPath }"></c:set>
 
-<!--sidebar start-->
-<aside>
-    <div id="sidebar" class="nav-collapse ">
-        <!-- sidebar menu start-->
-        <ul class="sidebar-menu" id="page-menu"></ul>
-        <!-- sidebar menu end-->
+
+<!--map js-->
+<link href="${dynamicURL}/later/css/jqvmap.css" rel='stylesheet' type='text/css' />
+<script src="${dynamicURL}/later/js/jquery.vmap.js"></script>
+<script src="${dynamicURL}/later/js/jquery.vmap.sampledata.js" type="text/javascript"></script>
+<script src="${dynamicURL}/later/js/jquery.vmap.world.js" type="text/javascript"></script>
+<script src="${dynamicURL}/later/js/clndr.js" type="text/javascript"></script>
+<script src="${dynamicURL}/later/js/site.js" type="text/javascript"></script>
+
+<!-- main content start-->
+<div id="page-wrapper">
+    <div class="main-page">
+        <div class="row-one">
+            <div class="col-md-4 widget">
+                <div class="stats-left ">
+                    <h5>Today</h5>
+                    <h4>Sales</h4>
+                </div>
+                <div class="stats-right">
+                    <label> 45</label>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+            <div class="col-md-4 widget states-mdl">
+                <div class="stats-left">
+                    <h5>Today</h5>
+                    <h4>Visitors</h4>
+                </div>
+                <div class="stats-right">
+                    <label> 80</label>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+            <div class="col-md-4 widget states-last">
+                <div class="stats-left">
+                    <h5>Today</h5>
+                    <h4>Orders</h4>
+                </div>
+                <div class="stats-right">
+                    <label>51</label>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+        <div class="charts">
+            <div class="col-md-4 charts-grids widget">
+                <h4 class="title">Bar Chart Example</h4>
+                <canvas id="bar" height="300" width="400"> </canvas>
+            </div>
+            <div class="col-md-4 charts-grids widget states-mdl">
+                <h4 class="title">Line Chart Example</h4>
+                <canvas id="line" height="300" width="400"> </canvas>
+            </div>
+            <div class="col-md-4 charts-grids widget">
+                <h4 class="title">Pie Chart Example</h4>
+                <canvas id="pie" height="300" width="400"> </canvas>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 stats-info widget">
+                <div class="stats-title">
+                    <h4 class="title">Browser Stats</h4>
+                </div>
+                <div class="stats-body">
+                    <ul class="list-unstyled">
+                        <li>GoogleChrome <span class="pull-right">85%</span>
+                            <div class="progress progress-striped active progress-right">
+                                <div class="bar green" style="width:85%;"></div>
+                            </div>
+                        </li>
+                        <li>Firefox <span class="pull-right">35%</span>
+                            <div class="progress progress-striped active progress-right">
+                                <div class="bar yellow" style="width:35%;"></div>
+                            </div>
+                        </li>
+                        <li>Internet Explorer <span class="pull-right">78%</span>
+                            <div class="progress progress-striped active progress-right">
+                                <div class="bar red" style="width:78%;"></div>
+                            </div>
+                        </li>
+                        <li>Safari <span class="pull-right">50%</span>
+                            <div class="progress progress-striped active progress-right">
+                                <div class="bar blue" style="width:50%;"></div>
+                            </div>
+                        </li>
+                        <li>Opera <span class="pull-right">80%</span>
+                            <div class="progress progress-striped active progress-right">
+                                <div class="bar light-blue" style="width:80%;"></div>
+                            </div>
+                        </li>
+                        <li class="last">Others <span class="pull-right">60%</span>
+                            <div class="progress progress-striped active progress-right">
+                                <div class="bar orange" style="width:60%;"></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-8 stats-info stats-last widget-shadow">
+                <table class="table stats-table ">
+                    <thead>
+                    <tr>
+                        <th>S.NO</th>
+                        <th>PRODUCT</th>
+                        <th>STATUS</th>
+                        <th>PROGRESS</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Lorem ipsum</td>
+                        <td><span class="label label-success">In progress</span></td>
+                        <td><h5>85% <i class="fa fa-level-up"></i></h5></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Aliquam</td>
+                        <td><span class="label label-warning">New</span></td>
+                        <td><h5>35% <i class="fa fa-level-up"></i></h5></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Lorem ipsum</td>
+                        <td><span class="label label-danger">Overdue</span></td>
+                        <td><h5  class="down">40% <i class="fa fa-level-down"></i></h5></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">4</th>
+                        <td>Aliquam</td>
+                        <td><span class="label label-info">Out of stock</span></td>
+                        <td><h5>100% <i class="fa fa-level-up"></i></h5></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">5</th>
+                        <td>Lorem ipsum</td>
+                        <td><span class="label label-success">In progress</span></td>
+                        <td><h5 class="down">10% <i class="fa fa-level-down"></i></h5></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">6</th>
+                        <td>Aliquam</td>
+                        <td><span class="label label-warning">New</span></td>
+                        <td><h5>38% <i class="fa fa-level-up"></i></h5></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 map widget-shadow">
+                <h4 class="title">Visitors Map </h4>
+                <div class="map_container"><div id="vmap" style="width: 100%; height: 354px;"></div></div>
+            </div>
+            <div class="col-md-4 social-media widget-shadow">
+                <div class="wid-social twitter">
+                    <div class="social-icon">
+                        <i class="fa fa-twitter text-light icon-xlg "></i>
+                    </div>
+                    <div class="social-info">
+                        <h3 class="number_counter bold count text-light start_timer counted">3.1 K</h3>
+                        <h4 class="counttype text-light">Tweets</h4>
+                    </div>
+                </div>
+                <div class="wid-social google-plus">
+                    <div class="social-icon">
+                        <i class="fa fa-google-plus text-light icon-xlg "></i>
+                    </div>
+                    <div class="social-info">
+                        <h3 class="number_counter bold count text-light start_timer counted">523</h3>
+                        <h4 class="counttype text-light">Circles</h4>
+                    </div>
+                </div>
+                <div class="wid-social facebook">
+                    <div class="social-icon">
+                        <i class="fa fa-facebook text-light icon-xlg "></i>
+                    </div>
+                    <div class="social-info">
+                        <h3 class="number_counter bold count text-light start_timer counted">1.06K</h3>
+                        <h4 class="counttype text-light">Likes</h4>
+                    </div>
+                </div>
+                <div class="wid-social dribbble">
+                    <div class="social-icon">
+                        <i class="fa fa-dribbble text-light icon-xlg "></i>
+                    </div>
+                    <div class="social-info">
+                        <h3 class="number_counter bold count text-light start_timer counted">1.6 K</h3>
+                        <h4 class="counttype text-light">Subscribers</h4>
+                    </div>
+                </div>
+                <div class="wid-social vimeo">
+                    <div class="social-icon">
+                        <i class="fa fa-vimeo-square text-light icon-xlg"> </i>
+                    </div>
+                    <div class="social-info">
+                        <h3 class="number_counter bold count text-light start_timer counted">2.1 m</h3>
+                        <h4 class="counttype text-light">Contacts</h4>
+                    </div>
+                </div>
+                <div class="wid-social xing">
+                    <div class="social-icon">
+                        <i class="fa fa-xing text-light icon-xlg "></i>
+                    </div>
+                    <div class="social-info">
+                        <h3 class="number_counter bold count text-light start_timer counted">2525</h3>
+                        <h4 class="counttype text-light">Connections</h4>
+                    </div>
+                </div>
+                <div class="wid-social flickr">
+                    <div class="social-icon">
+                        <i class="fa fa-android text-light icon-xlg"></i>
+                    </div>
+                    <div class="social-info">
+                        <h3 class="number_counter bold count text-light start_timer counted">1221</h3>
+                        <h4 class="counttype text-light">Media</h4>
+                    </div>
+                </div>
+                <div class="wid-social yahoo">
+                    <div class="social-icon">
+                        <i class="fa fa-yahoo text-light icon-xlg"> Y!</i>
+                    </div>
+                    <div class="social-info">
+                        <h3 class="number_counter bold count text-light start_timer counted">2525</h3>
+                        <h4 class="counttype text-light">Connections</h4>
+                    </div>
+                </div>
+                <div class="wid-social rss">
+                    <div class="social-icon">
+                        <i class="fa fa-rss text-light icon-xlg"></i>
+                    </div>
+                    <div class="social-info">
+                        <h3 class="number_counter bold count text-light start_timer counted">1523</h3>
+                        <h4 class="counttype text-light">Subscribers</h4>
+                    </div>
+                </div>
+                <div class="wid-social youtube">
+                    <div class="social-icon">
+                        <i class="fa fa-youtube text-light icon-xlg"></i>
+                    </div>
+                    <div class="social-info">
+                        <h3 class="number_counter bold count text-light start_timer counted">1523</h3>
+                        <h4 class="counttype text-light">Subscribers</h4>
+                    </div>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+        <div class="row calender widget-shadow">
+            <h4 class="title">Calender</h4>
+            <div class="cal1">
+
+            </div>
+        </div>
+        <div class="clearfix"> </div>
     </div>
-</aside>
-<!--sidebar end-->
-
-<!--main content start-->
-<section id="main-content">
-    <section class="wrapper">
-        <!--state overview start-->
-        <div class="row state-overview">
-            <div class="col-lg-3 col-sm-6">
-                <section class="panel">
-                    <div class="symbol terques">
-                        <i class="icon-user"></i>
-                    </div>
-                    <div class="value">
-                        <h1>22</h1>
-                        <p>New Users</p>
-                    </div>
-                </section>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-                <section class="panel">
-                    <div class="symbol red">
-                        <i class="icon-tags"></i>
-                    </div>
-                    <div class="value">
-                        <h1>140</h1>
-                        <p>Sales</p>
-                    </div>
-                </section>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-                <section class="panel">
-                    <div class="symbol yellow">
-                        <i class="icon-shopping-cart"></i>
-                    </div>
-                    <div class="value">
-                        <h1>345</h1>
-                        <p>New Order</p>
-                    </div>
-                </section>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-                <section class="panel">
-                    <div class="symbol blue">
-                        <i class="icon-bar-chart"></i>
-                    </div>
-                    <div class="value">
-                        <h1>34,500</h1>
-                        <p>Total Profit</p>
-                    </div>
-                </section>
-            </div>
-        </div>
-        <!--state overview end-->
-
-        <div class="row">
-            <div class="col-lg-8">
-                <!--custom chart start-->
-                <div class="border-head">
-                    <h3>Earning Graph</h3>
-                </div>
-                <div class="custom-bar-chart">
-                    <div class="bar">
-                        <div class="title">JAN</div>
-                        <div class="value tooltips" data-original-title="80%" data-toggle="tooltip"
-                             data-placement="top">80%
-                        </div>
-                    </div>
-                    <div class="bar doted">
-                        <div class="title">FEB</div>
-                        <div class="value tooltips" data-original-title="50%" data-toggle="tooltip"
-                             data-placement="top">50%
-                        </div>
-                    </div>
-                    <div class="bar ">
-                        <div class="title">MAR</div>
-                        <div class="value tooltips" data-original-title="40%" data-toggle="tooltip"
-                             data-placement="top">40%
-                        </div>
-                    </div>
-                    <div class="bar doted">
-                        <div class="title">APR</div>
-                        <div class="value tooltips" data-original-title="55%" data-toggle="tooltip"
-                             data-placement="top">55%
-                        </div>
-                    </div>
-                    <div class="bar">
-                        <div class="title">MAY</div>
-                        <div class="value tooltips" data-original-title="20%" data-toggle="tooltip"
-                             data-placement="top">20%
-                        </div>
-                    </div>
-                    <div class="bar doted">
-                        <div class="title">JUN</div>
-                        <div class="value tooltips" data-original-title="39%" data-toggle="tooltip"
-                             data-placement="top">39%
-                        </div>
-                    </div>
-                    <div class="bar">
-                        <div class="title">JUL</div>
-                        <div class="value tooltips" data-original-title="75%" data-toggle="tooltip"
-                             data-placement="top">75%
-                        </div>
-                    </div>
-                    <div class="bar doted">
-                        <div class="title">AUG</div>
-                        <div class="value tooltips" data-original-title="45%" data-toggle="tooltip"
-                             data-placement="top">45%
-                        </div>
-                    </div>
-                    <div class="bar ">
-                        <div class="title">SEP</div>
-                        <div class="value tooltips" data-original-title="50%" data-toggle="tooltip"
-                             data-placement="top">50%
-                        </div>
-                    </div>
-                    <div class="bar doted">
-                        <div class="title">OCT</div>
-                        <div class="value tooltips" data-original-title="42%" data-toggle="tooltip"
-                             data-placement="top">42%
-                        </div>
-                    </div>
-                    <div class="bar ">
-                        <div class="title">NOV</div>
-                        <div class="value tooltips" data-original-title="60%" data-toggle="tooltip"
-                             data-placement="top">60%
-                        </div>
-                    </div>
-                    <div class="bar doted">
-                        <div class="title">DEC</div>
-                        <div class="value tooltips" data-original-title="90%" data-toggle="tooltip"
-                             data-placement="top">90%
-                        </div>
-                    </div>
-                </div>
-                <!--custom chart end-->
-            </div>
-            <div class="col-lg-4">
-                <!--new earning start-->
-                <div class="panel terques-chart">
-                    <div class="panel-body chart-texture">
-                        <div class="chart">
-                            <div class="heading">
-                                <span>Friday</span>
-                                <strong>$ 57,00 | 15%</strong>
-                            </div>
-                            <div class="sparkline" data-type="line" data-resize="true" data-height="75"
-                                 data-width="90%" data-line-width="1" data-line-color="#fff" data-spot-color="#fff"
-                                 data-fill-color="" data-highlight-line-color="#fff" data-spot-radius="4"
-                                 data-data="[200,135,667,333,526,996,564,123,890,564,455]"></div>
-                        </div>
-                    </div>
-                    <div class="chart-tittle">
-                        <span class="title">New Earning</span>
-                        <span class="value">
-                                  <a href="#" class="active">Market</a>
-                                  |
-                                  <a href="#">Referal</a>
-                                  |
-                                  <a href="#">Online</a>
-                              </span>
-                    </div>
-                </div>
-                <!--new earning end-->
-
-                <!--total earning start-->
-                <div class="panel green-chart">
-                    <div class="panel-body">
-                        <div class="chart">
-                            <div class="heading">
-                                <span>June</span>
-                                <strong>23 Days | 65%</strong>
-                            </div>
-                            <div id="barchart"></div>
-                        </div>
-                    </div>
-                    <div class="chart-tittle">
-                        <span class="title">Total Earning</span>
-                        <span class="value">$, 76,54,678</span>
-                    </div>
-                </div>
-                <!--total earning end-->
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-4">
-                <!--user info table start-->
-                <section class="panel">
-                    <div class="panel-body">
-                        <a href="#" class="task-thumb">
-                            <img src="${dy}/img/avatar1.jpg" alt="">
-                        </a>
-                        <div class="task-thumb-details">
-                            <h1><a href="#">Anjelina Joli</a></h1>
-                            <p>Senior Architect</p>
-                        </div>
-                    </div>
-                    <table class="table table-hover personal-task">
-                        <tbody>
-                        <tr>
-                            <td>
-                                <i class=" icon-tasks"></i>
-                            </td>
-                            <td>New Task Issued</td>
-                            <td> 02</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <i class="icon-warning-sign"></i>
-                            </td>
-                            <td>Task Pending</td>
-                            <td> 14</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <i class="icon-envelope"></i>
-                            </td>
-                            <td>Inbox</td>
-                            <td> 45</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <i class=" icon-bell-alt"></i>
-                            </td>
-                            <td>New Notification</td>
-                            <td> 09</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </section>
-                <!--user info table end-->
-            </div>
-            <div class="col-lg-8">
-                <!--work progress start-->
-                <section class="panel">
-                    <div class="panel-body progress-panel">
-                        <div class="task-progress">
-                            <h1>Work Progress</h1>
-                            <p>Anjelina Joli</p>
-                        </div>
-                        <div class="task-option">
-                            <select class="styled">
-                                <option>Anjelina Joli</option>
-                                <option>Tom Crouse</option>
-                                <option>Jhon Due</option>
-                            </select>
-                        </div>
-                    </div>
-                    <table class="table table-hover personal-task">
-                        <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>
-                                Target Sell
-                            </td>
-                            <td>
-                                <span class="badge bg-important">75%</span>
-                            </td>
-                            <td>
-                                <div id="work-progress1"></div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>
-                                Product Delivery
-                            </td>
-                            <td>
-                                <span class="badge bg-success">43%</span>
-                            </td>
-                            <td>
-                                <div id="work-progress2"></div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>
-                                Payment Collection
-                            </td>
-                            <td>
-                                <span class="badge bg-info">67%</span>
-                            </td>
-                            <td>
-                                <div id="work-progress3"></div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>
-                                Work Progress
-                            </td>
-                            <td>
-                                <span class="badge bg-warning">30%</span>
-                            </td>
-                            <td>
-                                <div id="work-progress4"></div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>
-                                Delivery Pending
-                            </td>
-                            <td>
-                                <span class="badge bg-primary">15%</span>
-                            </td>
-                            <td>
-                                <div id="work-progress5"></div>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </section>
-                <!--work progress end-->
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-8">
-                <!--timeline start-->
-                <section class="panel">
-                    <div class="panel-body">
-                        <div class="text-center mbot30">
-                            <h3 class="timeline-title">Timeline</h3>
-                            <p class="t-info">This is a project timeline</p>
-                        </div>
-
-                        <div class="timeline">
-                            <article class="timeline-item">
-                                <div class="timeline-desk">
-                                    <div class="panel">
-                                        <div class="panel-body">
-                                            <span class="arrow"></span>
-                                            <span class="timeline-icon red"></span>
-                                            <span class="timeline-date">08:25 am</span>
-                                            <h1 class="red">12 July | Sunday</h1>
-                                            <p>Lorem ipsum dolor sit amet consiquest dio</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="timeline-item alt">
-                                <div class="timeline-desk">
-                                    <div class="panel">
-                                        <div class="panel-body">
-                                            <span class="arrow-alt"></span>
-                                            <span class="timeline-icon green"></span>
-                                            <span class="timeline-date">10:00 am</span>
-                                            <h1 class="green">10 July | Wednesday</h1>
-                                            <p><a href="#">Jonathan Smith</a> added new milestone <span><a href="#"
-                                                                                                           class="green">ERP</a></span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="timeline-item">
-                                <div class="timeline-desk">
-                                    <div class="panel">
-                                        <div class="panel-body">
-                                            <span class="arrow"></span>
-                                            <span class="timeline-icon blue"></span>
-                                            <span class="timeline-date">11:35 am</span>
-                                            <h1 class="blue">05 July | Monday</h1>
-                                            <p><a href="#">Anjelina Joli</a> added new album <span><a href="#"
-                                                                                                      class="blue">PARTY TIME</a></span>
-                                            </p>
-                                            <div class="album">
-                                                <a href="#">
-                                                    <img alt="" src="${dynamicURL}/later/img/sm-img-1.jpg">
-                                                </a>
-                                                <a href="#">
-                                                    <img alt="" src="${dynamicURL}/later/img/sm-img-2.jpg">
-                                                </a>
-                                                <a href="#">
-                                                    <img alt="" src="${dynamicURL}/later/img/sm-img-3.jpg">
-                                                </a>
-                                                <a href="#">
-                                                    <img alt="" src="${dynamicURL}/later/img/sm-img-1.jpg">
-                                                </a>
-                                                <a href="#">
-                                                    <img alt="" src="${dynamicURL}/later/img/sm-img-2.jpg">
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="timeline-item alt">
-                                <div class="timeline-desk">
-                                    <div class="panel">
-                                        <div class="panel-body">
-                                            <span class="arrow-alt"></span>
-                                            <span class="timeline-icon purple"></span>
-                                            <span class="timeline-date">3:20 pm</span>
-                                            <h1 class="purple">29 June | Saturday</h1>
-                                            <p>Lorem ipsum dolor sit amet consiquest dio</p>
-                                            <div class="notification">
-                                                <i class=" icon-exclamation-sign"></i> New task added for <a
-                                                    href="#">Denial Collins</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="timeline-item">
-                                <div class="timeline-desk">
-                                    <div class="panel">
-                                        <div class="panel-body">
-                                            <span class="arrow"></span>
-                                            <span class="timeline-icon light-green"></span>
-                                            <span class="timeline-date">07:49 pm</span>
-                                            <h1 class="light-green">10 June | Friday</h1>
-                                            <p>
-                                                <a href="#">Jonatha Smith</a> added new milestone
-                                                <span><a href="#" class="light-green">prank</a></span>
-                                                Lorem ipsum dolor sit amet consiquest dio
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                        </div>
-
-                        <div class="clearfix">&nbsp;</div>
-                    </div>
-                </section>
-                <!--timeline end-->
-            </div>
-            <div class="col-lg-4">
-                <!--revenue start-->
-                <section class="panel">
-                    <div class="revenue-head">
-                              <span>
-                                  <i class="icon-bar-chart"></i>
-                              </span>
-                        <h3>Revenue</h3>
-                        <span class="rev-combo pull-right">
-                                 June 2013
-                              </span>
-                    </div>
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-lg-6 col-sm-6 text-center">
-                                <div class="easy-pie-chart">
-                                    <div class="percentage" data-percent="35"><span>35</span>%</div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-sm-6">
-                                <div class="chart-info chart-position">
-                                    <span class="increase"></span>
-                                    <span>Revenue Increase</span>
-                                </div>
-                                <div class="chart-info">
-                                    <span class="decrease"></span>
-                                    <span>Revenue Decrease</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel-footer revenue-foot">
-                        <ul>
-                            <li class="first active">
-                                <a href="javascript:;">
-                                    <i class="icon-bullseye"></i>
-                                    Graphical
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:;">
-                                    <i class=" icon-th-large"></i>
-                                    Tabular
-                                </a>
-                            </li>
-                            <li class="last">
-                                <a href="javascript:;">
-                                    <i class=" icon-align-justify"></i>
-                                    Listing
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </section>
-                <!--revenue end-->
-                <!--features carousel start-->
-                <section class="panel">
-                    <div class="flat-carousal">
-                        <div id="owl-demo" class="owl-carousel owl-theme">
-                            <div class="item">
-                                <h1>Flatlab is new model of admin dashboard for happy use</h1>
-                                <div class="text-center">
-                                    <a href="javascript:;" class="view-all">View All</a>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <h1>Fully responsive and build with Bootstrap 3.0</h1>
-                                <div class="text-center">
-                                    <a href="javascript:;" class="view-all">View All</a>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <h1>Responsive Frontend is free if you get this.</h1>
-                                <div class="text-center">
-                                    <a href="javascript:;" class="view-all">View All</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel-body">
-                        <ul class="ft-link">
-                            <li class="active">
-                                <a href="javascript:;">
-                                    <i class="icon-reorder"></i>
-                                    Sales
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:;">
-                                    <i class=" icon-calendar-empty"></i>
-                                    promo
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:;">
-                                    <i class=" icon-camera"></i>
-                                    photo
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:;">
-                                    <i class=" icon-circle"></i>
-                                    other
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </section>
-                <!--features carousel end-->
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-8">
-                <!--latest product info start-->
-                <section class="panel post-wrap pro-box">
-                    <aside>
-                        <div class="post-info">
-                            <span class="arrow-pro right"></span>
-                            <div class="panel-body">
-                                <h1><strong>popular</strong> <br> Brand of this week</h1>
-                                <div class="desk yellow">
-                                    <h3>Dimond Ring</h3>
-                                    <p>Lorem ipsum dolor set amet lorem ipsum dolor set amet ipsum dolor set
-                                        amet</p>
-                                </div>
-                                <div class="post-btn">
-                                    <a href="javascript:;">
-                                        <i class="icon-chevron-sign-left"></i>
-                                    </a>
-                                    <a href="javascript:;">
-                                        <i class="icon-chevron-sign-right"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </aside>
-                    <aside class="post-highlight yellow v-align">
-                        <div class="panel-body text-center">
-                            <div class="pro-thumb">
-                                <img src="${dynamicURL}/later/img/ring.jpg" alt="">
-                            </div>
-                        </div>
-                    </aside>
-                </section>
-                <!--latest product info end-->
-                <!--twitter feedback start-->
-                <section class="panel post-wrap pro-box">
-                    <aside class="post-highlight terques v-align">
-                        <div class="panel-body">
-                            <h2>Flatlab is new model of admin dashboard <a href="javascript:;"> http://demo.com/</a>
-                                4 days ago by jonathan smith</h2>
-                        </div>
-                    </aside>
-                    <aside>
-                        <div class="post-info">
-                            <span class="arrow-pro left"></span>
-                            <div class="panel-body">
-                                <div class="text-center twite">
-                                    <h1>Twitter Feed</h1>
-                                </div>
-
-                                <footer class="social-footer">
-                                    <ul>
-                                        <li>
-                                            <a href="#">
-                                                <i class="icon-facebook"></i>
-                                            </a>
-                                        </li>
-                                        <li class="active">
-                                            <a href="#">
-                                                <i class="icon-twitter"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="icon-google-plus"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="icon-pinterest"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </footer>
-                            </div>
-                        </div>
-                    </aside>
-                </section>
-                <!--twitter feedback end-->
-            </div>
-            <div class="col-lg-4">
-                <div class="row">
-                    <div class="col-xs-6">
-                        <!--pie chart start-->
-                        <section class="panel">
-                            <div class="panel-body">
-                                <div class="chart">
-                                    <div id="pie-chart"></div>
-                                </div>
-                            </div>
-                            <footer class="pie-foot">
-                                Free: 260GB
-                            </footer>
-                        </section>
-                        <!--pie chart start-->
-                    </div>
-                    <div class="col-xs-6">
-                        <!--follower start-->
-                        <section class="panel">
-                            <div class="follower">
-                                <div class="panel-body">
-                                    <h4>Jonathan Smith</h4>
-                                    <div class="follow-ava">
-                                        <img src="${dynamicURL}/later/img/follower-avatar.jpg" alt="">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <footer class="follower-foot">
-                                <ul>
-                                    <li>
-                                        <h5>2789</h5>
-                                        <p>Follower</p>
-                                    </li>
-                                    <li>
-                                        <h5>270</h5>
-                                        <p>Following</p>
-                                    </li>
-                                </ul>
-                            </footer>
-                        </section>
-                        <!--follower end-->
-                    </div>
-                </div>
-                <!--weather statement start-->
-                <section class="panel">
-                    <div class="weather-bg">
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-xs-6">
-                                    <i class="icon-cloud"></i>
-                                    California
-                                </div>
-                                <div class="col-xs-6">
-                                    <div class="degree">
-                                        24°
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <footer class="weather-category">
-                        <ul>
-                            <li class="active">
-                                <h5>humidity</h5>
-                                56%
-                            </li>
-                            <li>
-                                <h5>precip</h5>
-                                1.50 in
-                            </li>
-                            <li>
-                                <h5>winds</h5>
-                                10 mph
-                            </li>
-                        </ul>
-                    </footer>
-
-                </section>
-                <!--weather statement end-->
-            </div>
-        </div>
-
-    </section>
-</section>
-<!--main content end-->
+</div>
 
 <script type="text/javascript">
 
     $(function () {
         // 加载，左侧菜单列表
-        loadMenu();
+        //loadMenu();
+
+        jQuery('#vmap').vectorMap({
+            map: 'world_en',
+            backgroundColor: '#fff',
+            color: '#696565',
+            hoverOpacity: 0.8,
+            selectedColor: '#696565',
+            enableZoom: true,
+            showTooltip: true,
+            values: sample_data,
+            scaleColors: ['#585858', '#696565'],
+            normalizeFunction: 'polynomial'
+        });
     });
 
+    var menuLeft = document.getElementById( 'cbp-spmenu-s1' ),
+        showLeftPush = document.getElementById( 'showLeftPush' ),
+        body = document.body;
 
+    showLeftPush.onclick = function() {
+        classie.toggle( this, 'active' );
+        classie.toggle( body, 'cbp-spmenu-push-toright' );
+        classie.toggle( menuLeft, 'cbp-spmenu-open' );
+        disableOther( 'showLeftPush' );
+    };
+
+
+    function disableOther( button ) {
+        if( button !== 'showLeftPush' ) {
+            classie.toggle( showLeftPush, 'disabled' );
+        }
+    }
+
+    var barChartData = {
+        labels : ["Jan","Feb","March","April","May","June","July"],
+        datasets : [
+            {
+                fillColor : "rgba(233, 78, 2, 0.9)",
+                strokeColor : "rgba(233, 78, 2, 0.9)",
+                highlightFill: "#e94e02",
+                highlightStroke: "#e94e02",
+                data : [65,59,90,81,56,55,40]
+            },
+            {
+                fillColor : "rgba(79, 82, 186, 0.9)",
+                strokeColor : "rgba(79, 82, 186, 0.9)",
+                highlightFill: "#4F52BA",
+                highlightStroke: "#4F52BA",
+                data : [40,70,55,20,45,70,60]
+            }
+        ]
+
+    };
+    var lineChartData = {
+        labels : ["Jan","Feb","March","April","May","June","July"],
+        datasets : [
+            {
+                fillColor : "rgba(242, 179, 63, 1)",
+                strokeColor : "#F2B33F",
+                pointColor : "rgba(242, 179, 63, 1)",
+                pointStrokeColor : "#fff",
+                data : [70,60,72,61,75,59,80]
+
+            },
+            {
+                fillColor : "rgba(97, 100, 193, 1)",
+                strokeColor : "#6164C1",
+                pointColor : "rgba(97, 100, 193,1)",
+                pointStrokeColor : "#9358ac",
+                data : [50,65,51,67,52,64,50]
+
+            }
+        ]
+
+    };
+    var pieData = [
+        {
+            value: 90,
+            color:"rgba(233, 78, 2, 1)",
+            label: "Product 1"
+        },
+        {
+            value : 50,
+            color : "rgba(242, 179, 63, 1)",
+            label: "Product 2"
+        },
+        {
+            value : 60,
+            color : "rgba(88, 88, 88,1)",
+            label: "Product 3"
+        },
+        {
+            value : 40,
+            color : "rgba(79, 82, 186, 1)",
+            label: "Product 4"
+        }
+
+    ];
+
+    new Chart(document.getElementById("line").getContext("2d")).Line(lineChartData);
+    new Chart(document.getElementById("bar").getContext("2d")).Bar(barChartData);
+    new Chart(document.getElementById("pie").getContext("2d")).Pie(pieData);
 
 </script>
-
 
