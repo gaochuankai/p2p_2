@@ -77,7 +77,7 @@ public class LoginController {
         } else if (userEntity.getEnable() == UserUtils.USER_ENABLE_1) {
             result.put(BaseUtils.SYSTEM_MAP_ERROR_MSG, "您的账号出现问题，请联系工作人员！");
             return result;
-        } else if (StringUtils.equals(userEntity.getPassword(), MD5Util.md5(password))) {
+        } else if (!StringUtils.equals(userEntity.getPassword(), MD5Util.md5(password))) {
             result.put(BaseUtils.SYSTEM_MAP_ERROR_MSG, "密码错误，请重新输入！");
             return result;
         }

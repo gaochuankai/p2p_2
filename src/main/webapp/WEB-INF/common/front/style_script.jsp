@@ -14,10 +14,27 @@
 <script type="text/javascript" src="${dynamicURL}/frontresources/js/waste.js"></script>
 <script type="text/javascript" src="${dynamicURL}/frontresources/js/banner.js"></script>
 <script type="text/javascript" src="${dynamicURL}/frontresources/js/jQuery-jcMarquee.js"></script>
+<script type="text/javascript" src="${dynamicURL}/frontresources/js/VisitorAPI-1.2.1-min.js"></script>
+<script type="text/javascript" src="${dynamicURL}/frontresources/js/AppMeasurement-1.2.1-min.js"></script>
 
+<!--时间  s-->
+<script type="text/javascript" src="${dynamicURL}/frontresources/js/jquery.ui.datepicker.js"></script>
+ 
+<script type="text/javascript" src="${dynamicURL}/frontresources/js/jquery-ui.min.js"></script>
+<!--时间  e
+<script language="javascript">
+		var staticCss = 'http://static.niwodai.com/Public/Static/201404';
+		var cssVersion = '2015010618';
+		var staticUrl = 'http://static.niwodai.com/';
+</script> -->
+<script src="${dynamicURL}/frontresources/js/loanApplyValidate.js?v=2015010618.js" type="text/javascript"></script>
+<script src="${dynamicURL}/frontresources/js/detail.js?v=2015010618.js" type="text/javascript"></script>
+<script src="${dynamicURL}/frontresources/js/netCredit.js?v=2015010618.js" type="text/javascript"></script>
+<script src="${dynamicURL}/frontresources/js/loanApplyCitys.js?v=2015010618.js" type="text/javascript"></script>
+<!-- -->
 
 <link href="${dynamicURL}/frontresources/css/css.css" rel="stylesheet">
-
+<link href="${dynamicURL}/frontresources/css/jquery-ui.css" rel="stylesheet">
 <!-- meta -->
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
