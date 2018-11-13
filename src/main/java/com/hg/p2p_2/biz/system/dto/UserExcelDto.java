@@ -2,6 +2,8 @@ package com.hg.p2p_2.biz.system.dto;
 
 import cn.afterturn.easypoi.excel.annotation.Excel;
 
+import java.util.Date;
+
 /**
  * Excel导入导出dto
  */
@@ -21,6 +23,9 @@ public class UserExcelDto {
 
     @Excel(name = "状态", orderNum = "4")
     private String enableWapper;
+
+    @Excel(name = "注册时间", exportFormat = "yyyy-MM-dd", orderNum = "5")
+    private Date createtime;
 
     public String getUsername() {
         return username;
@@ -60,5 +65,13 @@ public class UserExcelDto {
 
     public void setEnableWapper(String enableWapper) {
         this.enableWapper = enableWapper;
+    }
+
+    public Date getCreatetime() {
+        return createtime;
+    }
+
+    public void setCreatetime(Date createtime) {
+        this.createtime = createtime;
     }
 }

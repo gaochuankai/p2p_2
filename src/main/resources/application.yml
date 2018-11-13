@@ -42,6 +42,9 @@ mybatis:
   mapper-locations: classpath:mapping/*.xml
   type-aliases-package: com.hg.p2p_2.biz.*.mapper  # 注意：对应实体类的路径
 
+#logging:
+#  config: classpath:log4j2-spring.xml
+
 
 
 

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hg.p2p_2.biz.tender.mapper.TenderMapper">
+
+    <sql id="where_sql">
+        <where>
+            <if test="starttime != null">
+                AND createtime >= #{starttime}
+            </if>
+            <if test="endtime != null">
+                AND #{endtime} >= createtime
+            </if>
+            <if test="startmoney != null and startmoney != ''">
+                AND allmoney >= #{startmoney}
+            </if>
+            <if test="endmoney != null and endmoney != ''">
+                AND #{endmoney} >= allmoney
+            </if>
+            <if test="title != null and title != ''">
+                AND title LIKE CONCAT('%', #{title}, '%')
+            </if>
+            <if test="description != null and description != ''">
+                AND description LIKE CONCAT('%', #{description}, '%')
+            </if>
+            <if test="status != null and status != ''">
+                AND status = #{status}
+            </if>
+        </where>
+    </sql>
+
+    <select id="count" parameterType="map" resultType="long">
+        SELECT COUNT(*) FROM (
+        SELECT * FROM tr_tender
+        <include refid="where_sql"></include>
+        ) t
+    </select>
+
+    <select id="findList" parameterType="map"
+            resultType="com.hg.p2p_2.biz.tender.entity.TenderEntity">
+        SELECT * FROM tr_tender
+        <include refid="where_sql"></include>
+        <if test="limitStart != null and limitStart != '' and limitEnd != mull and limitEnd != ''">
+            LIMIT #{limitStart}, #{limitEnd}
+        </if>
+    </select>
+
+</mapper>
