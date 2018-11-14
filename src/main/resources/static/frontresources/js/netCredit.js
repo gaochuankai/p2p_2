@@ -105,7 +105,7 @@ $(function(){
 		//IE6下兼容问题
 		$('#repayment').css('display','block');
 		// 关闭计算结果框
-		closeAll_0();
+		//closeAll_0();
 	});
 	
 	$(".plusBank button.btn").click(function() {

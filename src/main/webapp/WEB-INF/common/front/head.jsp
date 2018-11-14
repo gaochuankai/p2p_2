@@ -5,28 +5,28 @@
 
 <!--head-->
 <div class="top">
-    <div class="wrap clearfix">
-        <em class="myfont">&#xe632;</em>
-        <span class="songti">服务热线：</span>
-        <span class="tel">400-121-8232</span>
-        <a href="#" target="_blank" class="ico weibo"></a>
-        <a href="#" target="_blank" class="ico weixin"></a>
-        <a href="#" target="_blank" class="ico qq"></a>
-        
-        <c:if test="${sessionScope.loginUser!=null }">		
-        	<span class="fr"><span style="font-size: 15px">欢迎:</span><font color="red">${loginUser.username}</font>
-	           			<span style="font-size: 15px">登录</span>
-	           			&nbsp;
-	           			<a href="#" onclick="loginout();">退&nbsp;出</a>&nbsp;
-	            <a href="about.html">帮助中心</a>
+	<div class="wrap clearfix">
+		<em class="myfont">&#xe632;</em>
+		<span class="songti">服务热线：</span>
+		<span class="tel">400-121-8232</span>
+		<a href="#" target="_blank" class="ico weibo"></a>
+		<a href="#" target="_blank" class="ico weixin"></a>
+		<a href="#" target="_blank" class="ico qq"></a>
+		<c:if test="${sessionScope._loginuser!=null }">		
+			<span class="fr">
+				<span style="font-size: 15px">欢迎:</span>
+				<span color="red">${sessionScope._loginUser.username}</span>
+				<span style="font-size: 15px">登录</span>&nbsp;
+				<a href="#" onclick="loginout();">退&nbsp;出</a>&nbsp;
+				<a href="about.html">帮助中心</a>
         	</span>
         </c:if>
-        <c:if test="${sessionScope.loginUser==null }">
+        <c:if test="${sessionScope._loginuser==null }">
 	        <span class="fr"><a href="javascript:;" class="loginbtn">登录</a>
 	            <a href="javascript:;" class="o regbtn">免费注册</a>
 	            <a href="about.html">帮助中心</a>
 	        </span>
-	       </c:if>
+		</c:if>
     </div>
 </div>
 <div class="head">
@@ -36,12 +36,13 @@
         <ul class="nav">
             <li><a href="${dynamicURL }/login">首页</a></li>
             <li><a href="${dynamicURL }/front/invest">我要投资</a></li>
-            <li><a href="${dynamicURL }/front/borrow">我要借款</a></li>
+            <li><a href="${dynamicURL }/front/borrow/toBorrowPage">我要借款</a></li>
             <li><a href="${dynamicURL }/front/about">关于我们</a></li>
         </ul>
     </div>
 </div>
 <script type="text/javascript">
+	var dynamicURL = "${dynamicURL}";
 
     function loginout(){
         layer.confirm("确定要退出系统吗？", {btn: ['确定', '取消'], title: ""}, function(){

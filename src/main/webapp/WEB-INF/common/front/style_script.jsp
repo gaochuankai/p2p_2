@@ -3,6 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="dynamicURL" value="${pageContext.request.contextPath }"></c:set>
 
+<script type="text/javascript">
+	var dynamicURL = "${dynamicURL}";
+</script>
+
 <script type="text/javascript" src="${dynamicURL}/js/jquery-1.8.3.js"></script>
 <script type="text/javascript" src="${dynamicURL}/js/jquery.form.js"></script>
 <script type="text/javascript" src="${dynamicURL}/js/js.cookie.js"></script>
@@ -28,7 +32,7 @@
 		var staticUrl = 'http://static.niwodai.com/';
 </script> -->
 <script src="${dynamicURL}/frontresources/js/loanApplyValidate.js?v=2015010618.js" type="text/javascript"></script>
-<script src="${dynamicURL}/frontresources/js/detail.js?v=2015010618.js" type="text/javascript"></script>
+<script src="${dynamicURL}/frontresources/js/detail2.js?v=2015010618.js" type="text/javascript"></script>
 <script src="${dynamicURL}/frontresources/js/netCredit.js?v=2015010618.js" type="text/javascript"></script>
 <script src="${dynamicURL}/frontresources/js/loanApplyCitys.js?v=2015010618.js" type="text/javascript"></script>
 <!-- -->

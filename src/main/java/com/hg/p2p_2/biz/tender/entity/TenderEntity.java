@@ -28,7 +28,7 @@ public class TenderEntity extends BaseEntity<Long> {
      * 描述
      */
     private String description;
-
+    
     /**
      * 标状态，0未发标，1.投标中，2，未完成投标、流标，3还款中，4完成、结束
      */
@@ -67,8 +67,7 @@ public class TenderEntity extends BaseEntity<Long> {
     public void setStatus(Integer status) {
         this.status = status;
     }
-
-    /**
+	/**
      * 标状态，0未发标，1.投标中，2，未完成投标、流标，3还款中，4完成、结束
      */
     public String getStatusWapper() {

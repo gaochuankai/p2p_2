@@ -4,8 +4,10 @@ import com.hg.p2p_2.biz.base.util.BaseUtils;
 import com.hg.p2p_2.biz.system.entity.UserEntity;
 import com.hg.p2p_2.biz.system.mapper.UserMapper;
 import com.hg.p2p_2.biz.system.service.UserService;
+import com.hg.p2p_2.biz.system.util.UserUtils;
 import com.hg.p2p_2.web.base.verify.MD5Util;
 import org.apache.commons.lang3.StringUtils;
+import org.omg.PortableInterceptor.USER_EXCEPTION;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +18,7 @@ import javax.servlet.http.HttpSession;
 
 import java.util.Date;
 import java.util.Map;
+import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -82,19 +85,19 @@ public class RegisterController {
 
         // 判断用户是否存在
         if (registerUser != null) {
-            result.put(BaseUtils.SYSTEM_MAP_ERROR_MSG, "该电话已存在！");
+            result.put(BaseUtils.SYSTEM_MAP_ERROR_MSG, "该用户已存在！");
             return result;
         }
        
 
         registerUser = new UserEntity();
-        registerUser.setUuid("l231313131");
+        registerUser.setUuid(UUID.randomUUID().toString());
         registerUser.setCreatetime(new Date());
         registerUser.setUsername(username);// 默认为空
         registerUser.setPassword(MD5Util.md5(password0));//初始密码赋值123456789
         registerUser.setEmail("");// 邮箱设置为空
         registerUser.setAge(0);//默认为空
-        registerUser.setEnable(0);//设置为可用
+        registerUser.setEnable(UserUtils.USER_ENABLE_2);//设置为可用
         registerUser.setTelephone(telphone);//设置电话号码
 
 
@@ -103,8 +106,11 @@ public class RegisterController {
 
         if (registerUser != null && registerUser.getId() != null) {
         	//注册成功后，将对象保存在sesssion中
-        	session.setAttribute("loginUser", registerUser);
-        	
+        	session.setAttribute(BaseUtils.KEY_USER, registerUser);
+        	session.setAttribute(BaseUtils.KEY_USER_ID,
+        			registerUser.getId());
+        	session.setAttribute(BaseUtils.KEY_LOGIN_NAME,
+        			registerUser.getUsername());
             result.put(BaseUtils.SYSTEM_MAP_SUCCESS, true);
         } else {
             result.put(BaseUtils.SYSTEM_MAP_ERROR_MSG, "业务繁忙，请稍后尝试！");
