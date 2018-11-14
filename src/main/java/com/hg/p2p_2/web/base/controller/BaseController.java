@@ -20,6 +20,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 
 /**
  * 基础Controller
@@ -67,6 +68,7 @@ public abstract class BaseController<T extends BaseEntity<Long>, Service extends
             BeanUtils.copyProperties(t, temp);
             t = temp;
         } else {
+        	t.setUuid(UUID.randomUUID().toString());
             t.setCreatetime(new Date());
             t.setCreatebyid(LoginContextHolder.get().getUserId());
         }
