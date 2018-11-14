@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hg.p2p_2.biz.tender.mapper.TenderDetailMapper">
+
+    <sql id="where_sql">
+        <where>
+            t.createbyid = p.id
+            AND t.tenderid = #{tenderid}
+            <if test="starttime != null">
+                AND t.createtime >= #{starttime}
+            </if>
+            <if test="endtime != null">
+                AND #{endtime} >= t.createtime
+            </if>
+            <if test="startmoney != null and startmoney != ''">
+                AND t.allmoney >= #{startmoney}
+            </if>
+            <if test="endmoney != null and endmoney != ''">
+                AND #{endmoney} >= t.allmoney
+            </if>
+            <if test="createUserName != null and createUserName != ''">
+                AND p.username LIKE CONCAT('%', #{createUserName}, '%')
+            </if>
+            <if test="status != null and status != ''">
+                AND t.status = #{status}
+            </if>
+        </where>
+    </sql>
+
+    <select id="count" parameterType="map" resultType="long">
+        SELECT COUNT(*) FROM (
+            SELECT t.*,p.username createUserName FROM tc_tender_detail t ,tr_system_user p
+            <include refid="where_sql"></include>
+        ) a
+    </select>
+
+    <select id="findList" parameterType="map"
+            resultType="com.hg.p2p_2.biz.tender.entity.TenderDetailEntity">
+        SELECT t.*,p.username createUserName FROM tc_tender_detail t ,tr_system_user p
+        <include refid="where_sql"></include>
+        <if test="limitStart != null and limitStart != '' and limitEnd != mull and limitEnd != ''">
+            LIMIT #{limitStart}, #{limitEnd}
+        </if>
+    </select>
+
+</mapper>

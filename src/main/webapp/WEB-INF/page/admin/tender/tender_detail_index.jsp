@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="dynamicURL" value="${pageContext.request.contextPath}"></c:set>
 
+
 <script type="text/javascript"
         src="${dynamicURL }/later/assets/bootstrap-paginator-master/src/bootstrap-paginator.js"></script>
 
@@ -19,19 +20,9 @@
                     <td>
                         <input type="date" id="endtimeFormId"/>
                     </td>
-                    <td>标题</td>
+                    <td>投资人</td>
                     <td>
-                        <input type="text" name="title" id="titleFormId"/>
-                    </td>
-                    <td>
-                        <select style="width: 100px;" id="statusFormId">
-                            <option value="-1">全部</option>
-                            <option value="0">未发标</option>
-                            <option value="1">投标中</option>
-                            <option value="2">流标</option>
-                            <option value="3">还款中</option>
-                            <option value="4">完成</option>
-                        </select>
+                        <input type="text" name="createUserName" id="createUserNameFormId"/>
                     </td>
                 </tr>
                 <tr>
@@ -43,14 +34,10 @@
                     <td>
                         <input type="number" placeholder="最高值" id="endmoneyFormId"/>
                     </td>
-                    <td>描述</td>
-                    <td>
-                        <input type="text" name="description" id="descriptionFormId"/>
-                    </td>
+                    <td></td>
                     <td>
                         <button type="button" class="btn btn-primary" onclick="loadTenderData(1)">查询</button>
                         <button type="button" class="btn btn-primary" onclick="clean()">重置</button>
-                        <button type="button" class="btn btn-primary" onclick="exportExcel()">导出</button>
                     </td>
                 </tr>
             </table>
@@ -61,10 +48,10 @@
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>标题</th>
-                    <th>总金额</th>
-                    <th>状态</th>
-                    <th>创建时间</th>
+                    <th>金额</th>
+                    <%--<th>状态</th>--%>
+                    <th>交易时间</th>
+                    <th>投资人</th>
                 </tr>
                 </thead>
                 <tbody id="detailList">
@@ -72,6 +59,7 @@
             </table>
         </div>
         <nav style="text-align: center" id="Paginator">
+            <h4 id="pageCount"></h4>
             <ul class="pagination" id="pageLimit"></ul>
         </nav>
     </div>
@@ -116,33 +104,33 @@
 
     function loadTenderData(page) {
         $.ajax({
-            url: "${dynamicURL }/admin/tender/list",//请求路径
+            url: "${dynamicURL }/admin/tender/details/list",//请求路径
             type: "POST",//请求类型
             dataType: "JSON",//服务器响应数据类型
             data: {
                 "page": page,
                 "starttime": $('#starttimeFormId').val(),
                 "endtime": $('#endtimeFormId').val(),
-                "title": $('#titleFormId').val(),
+                "createUserName": $('#createUserNameFormId').val(),
                 "startmoney": $('#startmoneyFormId').val(),
                 "endmoney": $('#endmoneyFormId').val(),
-                "description": $('#descriptionFormId').val(),
-                "status": $('#statusFormId').val()
+                "tenderid": '${tenderid}'
             },//参数
             success: function (data) {
                 var str = '';
                 $.each(data.list, function (index, t) {
                     str += '<tr>';
                     str += '<th scope="row">' + (index + 1) + '</th>';
-                    str += '    <td><a href="${dynamicURL }/admin/tender/details/toDetailPage?tenderid=' + t.id + '">' + t.title + '</a></td>';
-                    str += '    <td>' + t.allmoney + '</td>';
-                    str += '    <td>' + t.statusWapper + '</td>';
+                    str += '    <td>' + t.dealmoney + '</td>';
+                    // str += '    <td>' + t.statusWapper + '</td>';
                     str += '    <td>' + t.createtime + '</td>';
+                    str += '    <td>' + t.createUserName + '</td>';
                     str += '</th>';
                     str += '<tr>';
                 });
                 $("#detailList").html(str);
                 totalPagesCurrent = data.page.end;
+                $("#pageCount").html("总共" + data.page.total + "条数据");
                 if (page == 1) {
                     loadPage();
                 }
@@ -156,28 +144,14 @@
     function clean() {
         $('#starttimeFormId').val("");
         $('#endtimeFormId').val("");
-        $('#titleFormId').val("");
+        $('#createUserNameFormId').val("");
         $('#startmoneyFormId').val("");
         $('#endmoneyFormId').val("");
-        $('#descriptionFormId').val("");
         $('#statusFormId').val(-1);
         loadTenderData(1);
     }
 
-    function exportExcel() {
-        var starttime = $('#starttimeFormId').val();
-        var endtime = $('#endtimeFormId').val();
-        var title = $('#titleFormId').val();
-        var startmoney = $('#startmoneyFormId').val();
-        var endmoney = $('#endmoneyFormId').val();
-        var description = $('#descriptionFormId').val();
-        var status = $('#statusFormId').val();
-        var url = "${dynamicURL}/admin/tender/export";
-        url += "?starttime=" + starttime + "&endtime=" + endtime + "&title=" + title;
-        url += "&startmoney=" + startmoney + "&endmoney=" + endmoney;
-        url += "&description=" + description + "&status=" + status;
-        window.location.href = url;
-    }
 
 </script>
+
 

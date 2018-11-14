@@ -14,4 +14,8 @@ public class TenderUtil {
     public final static Integer TENDER_STATUS_3 = 3;
     public final static Integer TENDER_STATUS_4 = 4;
 
+    public final static Integer TENDER_DETAIL_STATUS_0 = 0;
+    public final static Integer TENDER_DETAIL_STATUS_1 = 1;
+    public final static Integer TENDER_DETAIL_STATUS_2 = 2;
+
 }
